@@ -8,7 +8,7 @@ namespace SFHype.Models
     public string Name { get; set; }
     public string Describe {get; set; }
     public int Hype {get; set;}
-    public DateTime Posted { get; set; }
+    public DateTime Originated { get; set; }
 
   }
 }

@@ -1,91 +1,69 @@
-## <div align="center">Messenger API</div>
-#### <div align="center"> *A message board API with CRUD functionality* </div> 
-***<p align="right">Morgan Bradford***</p>   
-<p align="center">
-<br>
+# SFMetroHype.Solution
+#### Created By: Connor Burgess 
+* * *
+<p align="center"><img src="" alt="Sf Finder"
+	title="SF Finder" width="350" height="200"></p>
 
-<img alt="C#" src="https://img.shields.io/badge/c%23%20-%23239120.svg?&style=for-the-badge&logo=c-sharp&logoColor=white"/>
-<img alt="made with Bash" src="https://img.shields.io/badge/Made%20with-Bash-1f425f.svg"/>
-</p>
+## Description  
+SFMetroHype is a RESTful API with full CRUD to track hyped businesses in the San Francisco metro area. Database is pre-seeded with starting shops and ready to be incorporated with a front end. Simple hype system whereby shops gain "hype" according to the number of API calls they receive. EX: 10 GET requests to a shop will increase it's hype rating by 10. Businesses with a hype rating > 1000 are added to a best shop list. Developed in C#/.Net and Uses Entity Framework Core ORM to abstract SQL interaction. 
+* * *
 
-___
-## 🚩 *Description*:    
-### * Create an API with CRUD functionality using .NET 5.0 & ASP.Net for a message board.
-
-
-## 🔧 *Setup/Installation instructions:*
-#### 🌐 From the web:
-* Go to my GitHub repository, using following [URL](https://github.com/MorganJBradford/MessageAPI.Solution.git).
-* Click the "Code" <img src="README-files/download-button.png" alt="code button" height="20" align="center"/> and click the 'Download zip' option ![img](README-files/Capture.JPG).
-#### ⚙️ From the terminal: 
-* Clone my repository from GitHub using `git clone https://github.com/MorganJBradford/MessageAPI.Solution.git` in your terminal or GitBash
-* Navigate to the downloaded folder using the '*cd*' command
-⚠️ *Note: To run this project locally you will need to have .NET Core. You can check if you have .NET Core by running 'dotnet --version' in the command line. If you do not have .NET Core please find more information and download [here](https://dotnet.microsoft.com/download/dotnet)*
-
-
-####  🖥️ View website:
-
-1. Configure appsettings.json.
-
-* Create a file named "appsettings.json" in the top level of the production directory 'MessageAPI.Solution/MessageAPI'. 
-**Uploading to your own repository**: If using vscode and "appsettings.json" is is not grayed out like in the image below, you may need to commit the .gitignore file included in this project first. If "appsettings.json" is not grayed out **do not upload your project**
-![img](README-files/appsettings.JPG)
-
-* Navigate to your appsettings.json and paste the following template code:
-
-``{
-  "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=[database_name];uid=root;pwd=[password];"
-  }
-}``
-
-If you are using a server other than the default server, you will need to change the Port number. Otherwise, we will update the code to put in our database information and password. Replace "\[database_name]" with the "MessageAPI_db" and "\[password]" with your password. **Again this is private and should be included in a .gitignore.** The final result should look like the following:
-
-``{
-  "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=MessageAPI_db;uid=root;pwd=mydbpassword;"
-  }
-}``
-
-2. Run Application
-
-* From the top level directory enter 'cd MessageAPI' in the command line.
-* Run 'dotnet ef database update' to create your database.
-* Run the command 'dotnet restore' to download dependencies required to run the project.
-* Next, enter 'dotnet run' the in command line. You should see a MessageAPI similar to the following populate in your terminal:
-
-> Hosting environment: Production
-> Content root path: C:\Users\vampi\OneDrive\Desktop\epicodus\MessageAPI.Solution\MessageAPI
-> Now listening on: http://localhost:5000
-> Now listening on: https://localhost:5001
-> Application started. Press Ctrl+C to shut down.
-
-* Lastly, follow the link "http://localhost:5000" either via holding the 'ctrl' and clicking the link (PC), or by holding 'cmd' and clicking the link (Mac).
-
-
-## 🛠️ *Technologies used:*
-* ASP.NET Core MVC
-* C# 9
+## Technologies used
+* C#
+* .Net v5.0
+* JSon.net
+* RestSharp
+* Swagger
 * Entity Framework Core
-* Git and GitHub
-* Identity
-* MSTest
-* MySql
-* .NET v5.0
-* REPL
+* ASP.NET Core MVC
+* ASP.NET Core Identity
+* MySQL
+* MySQL Workbench
 
-## 🐛 *Known bugs:*
-* You you find any bugs, _please_ contact me via my email below.
+* * *
+## Setup 1) Initial Setup
+* Ensure .Net v5.0 Core is installed: [download here](https://dotnet.microsoft.com/download/dotnet/5.0)
+* Ensure dotnet script is installed: [instructions here](https://github.com/filipw/dotnet-script)
+* Clone Repo from GitHub (Link: )
 
-## 📬 Contact Information
-#### For any questions
-*[email Morgan](mailto:morganjbradford95@gmail.com)*
-*[email Connor](mailto:connorburgesscodes@gmail.com)*
-*[email Scott](mailto:scottieoneil@gmail.com)*
+## Setup 2) Initial Database Setup
+* Ensure MySQL is installed [download here](https://www.mysql.com/)
+* Ensure MySQL Workbench is installed [download here](https://www.mysql.com/products/workbench/)
+
+## Setup 3) Create appsettings.json
+* In root directory of project create a file called "appsettings.json"
+* Copy and paste the following into the file:
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Port=3306;database=sfmetrohype;uid={YOUR UID};pwd={YOUR PWD;"
+  }
+}
+* Input your UID and password from MYSQL database setup and remove curly braces from around pwd/UID. Please note your port may be different.
+* If planning to push a project to GitHub, it is advised to avoid revealing sensitive details by [setting up a .gitignore](https://docs.github.com/en/github/using-git/ignoring-files) and ignoring this file.
+
+## Setup 4) Dotnet Setup & Running Program
+* Navigate to ./SFMetroHype.Solution/SF inside of the cloned repo and type $"dotnet restore" (no bling / quotes) in terminal
+* * From inside ./SFMetroHype.Solution/SF folder type $"dotnet ef database update" (no bling / quotes) in terminal in order to connect migrations to MYSql
+* You may utilize MySQL Workbench in order to verify database files if desired. [Check out the MySQL docs](https://dev.mysql.com/doc/workbench/en/wb-sql-editor-navigator.html)
+* Run program by inputting$"dotnet run" (no bling / quotes) in terminal while in ./SFMetroHype.Solution/SF folder.
+
+* * *
+
+## To Do:
+
+## Resources Used:
 
 
+## Additional comments:
+* Created on 4/02/21  
+* * *
 
-## 📘 *License and copyright:*
+## License:
+> *&copy; Connor Burgess, 2021*
 
-> ***© Morgan Bradford, Connor Burgess, & Scott O'Neil 2021***  
-> ⚖️ *[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)*
+Licensed under [MIT license](https://mit-license.org/)
+
+* * *
+
+## Contact Information
+_Connor Burgess: [Email](connorburgesscodes@gmail.com)_

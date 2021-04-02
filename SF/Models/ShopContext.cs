@@ -4,7 +4,7 @@ namespace SFHype.Models
 {
   public class ShopContext : DbContext
   {
-    public MessageContext(DbContextOptions<MessageContext> options)
+    public ShopContext(DbContextOptions<ShopContext> options)
       : base(options)
     {
     }
