@@ -25,7 +25,7 @@ namespace SFHype
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<MessageContext>(opt =>
+            services.AddDbContext<ShopContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -35,7 +35,6 @@ namespace SFHype
                 Version = "v1",
                 Title = "SF Metro Hype API",
                 Description = "SFMetroHype is a RESTful API with full CRUD to add hyped businesses in the San Francisco metro area",
-                TermsOfService = new Uri("https://thiswebsiteisalie.com/thispathdontexist"),
                 Contact = new OpenApiContact
                 {
                     Name = "Connor Burgess",

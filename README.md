@@ -5,9 +5,14 @@
 	title="SF Finder" width="350" height="200"></p>
 
 ## Description  
-SFMetroHype is a RESTful API with full CRUD to track hyped businesses in the San Francisco metro area. Database is pre-seeded with starting shops and ready to be incorporated with a front end. Simple hype system whereby shops gain "hype" according to the number of API calls they receive. EX: 10 GET requests to a shop will increase it's hype rating by 10. Businesses with a hype rating > 1000 are added to a best shop list. Developed in C#/.Net and Uses Entity Framework Core ORM to abstract SQL interaction. 
+SFMetroHype is a RESTful API with full CRUD to track hyped businesses in the San Francisco metro area. Database is pre-seeded with starting shops and ready to be incorporated with a front end. Simple hype system whereby shops gain "hype" according to how user interacts with API (EX: 1 GET request to a shop increases hype rating by .001). Hyped businesses are added to a best shop list which are sorted in descending order by hype rating. API in C#/.Net/ASP.Net Core MVC and Uses Entity Framework Core ORM to abstract SQL interaction. 
 * * *
 
+## Hype system v1
+### Manipulate a shop's hype in the following ways:
+* Get requests to a specific shop (EX: 1 GET request to a shop will increase it's hype rating by .001)
+* Comments posted to a shop with "Like" flag set to true (+.003 hype)
+* Comments posted to a shop with a "Like" flag set to false (-.003 hype)
 ## Technologies used
 * C#
 * .Net v5.0
