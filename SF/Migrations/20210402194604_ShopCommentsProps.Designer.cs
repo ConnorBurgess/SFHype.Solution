@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SFHype.Models;
 
 namespace SFHype.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20210402194604_ShopCommentsProps")]
+    partial class ShopCommentsProps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,12 +34,6 @@ namespace SFHype.Migrations
                     b.Property<float>("Hype")
                         .HasColumnType("float");
 
-                    b.Property<float>("HypeRatio")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("LastAccess")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<int>("Likes")
                         .HasColumnType("int");
 
@@ -56,6 +52,29 @@ namespace SFHype.Migrations
                     b.HasKey("ShopId");
 
                     b.ToTable("Shops");
+
+                    b.HasData(
+                        new
+                        {
+                            ShopId = -2,
+                            Describe = "A cool shop.",
+                            Dislikes = 0,
+                            Hype = 0f,
+                            Likes = 0,
+                            Name = "SF Shop 1",
+                            Originated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Restaurant"
+                        },
+                        new
+                        {
+                            ShopId = -1,
+                            Describe = "Another cool shop.",
+                            Dislikes = 0,
+                            Hype = 0f,
+                            Likes = 0,
+                            Name = "SF Shop 2",
+                            Originated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 #pragma warning restore 612, 618
         }
