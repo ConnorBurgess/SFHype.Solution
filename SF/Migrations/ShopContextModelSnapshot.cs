@@ -50,12 +50,44 @@ namespace SFHype.Migrations
                     b.Property<string>("Remark")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<int>("RemarkId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Type")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ShopId");
 
                     b.ToTable("Shops");
+
+                    b.HasData(
+                        new
+                        {
+                            ShopId = -2,
+                            Describe = "A cool shop.",
+                            Dislikes = 0,
+                            Hype = 0f,
+                            HypeRatio = 1f,
+                            LastAccess = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Likes = 0,
+                            Name = "SF Shop 1",
+                            Originated = new DateTime(2021, 4, 2, 14, 37, 5, 808, DateTimeKind.Local).AddTicks(1579),
+                            RemarkId = 0,
+                            Type = "Restaurant"
+                        },
+                        new
+                        {
+                            ShopId = -1,
+                            Describe = "Another cool shop.",
+                            Dislikes = 0,
+                            Hype = 0f,
+                            HypeRatio = 1f,
+                            LastAccess = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Likes = 0,
+                            Name = "SF Shop 2",
+                            Originated = new DateTime(2021, 4, 2, 14, 37, 5, 808, DateTimeKind.Local).AddTicks(2772),
+                            RemarkId = 0
+                        });
                 });
 #pragma warning restore 612, 618
         }

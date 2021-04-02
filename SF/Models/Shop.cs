@@ -9,11 +9,13 @@ namespace SFHype.Models
 
     public Shop()
     {
-      this.Comments = new HashSet<string>();
+      this.Comments = new HashSet<Remark>();
       this.Originated = DateTime.Now;
+      this.HypeRatio = 1;
     }
     [Key]
     public int ShopId { get; set; }
+    public int RemarkId {get; set; }
     public string Name { get; set; }
     public string Describe {get; set; }
     public string Remark {get; set;}
@@ -24,9 +26,7 @@ namespace SFHype.Models
     public float HypeRatio {get; set;}
     public DateTime Originated { get; set; }
     public DateTime LastAccess { get; set; }
-
-    [NotMapped]
-    public ICollection<String> Comments { get; set; }
+    public ICollection<Remark> Comments { get; set; }
 
     // Set ID outside class for purposes of testing seed data if necessary
     public void SetId(int id) 

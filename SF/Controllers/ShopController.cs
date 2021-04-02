@@ -23,6 +23,10 @@ namespace SFHype.Controllers
     public async Task<ActionResult<IEnumerable<Shop>>> Get(string type)
     {
       var query = _db.Shops.AsQueryable();
+      // var query = _db.Shops.Include(entry => entry.Comments).AsQueryable();
+      // foreach (Shop shop in query) {
+      //   shop.Include(shop.Comments);
+      // }
       if (type != null)
       {
         query = query.Where(e => e.Type == type);
@@ -42,6 +46,9 @@ namespace SFHype.Controllers
       }
       shop.Hype += .003f;
       _db.Entry(shop).State = EntityState.Modified;
+      Console.WriteLine(shop.LastAccess.DayOfYear);
+      Console.WriteLine(DateTime.Now.DayOfYear);
+      // if (shop.LastAccess.DayOfYear == DateTime.DayOfYear)
       await _db.SaveChangesAsync();
 
       return shop;
@@ -70,7 +77,26 @@ namespace SFHype.Controllers
       return CreatedAtAction("Post", new { id = shop.ShopId}, shop);
     }
 
-    // PUT: api/Messages/1  }
+    // POST new comment api/Shops/1
+    [HttpPost("{id}")]
+    public async Task<ActionResult<Shop>> Post(int id, Remark remark)
+    {
+      var thisShop = _db.Shops.FirstOrDefault(entry => entry.ShopId == id);
+      
+      if (thisShop != null)
+      {
+        // thisShop.Remarks.Add(remark);
+      _db.Entry(thisShop).State = EntityState.Modified;
+        await _db.SaveChangesAsync();
+      }
+      else
+      {
+        return BadRequest();
+      }
+      return CreatedAtAction("Post", new { id = thisShop.ShopId}, thisShop);
+    }
+
+    // PUT: api/Shops/1  }
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, Shop shop)
     {
@@ -99,6 +125,7 @@ namespace SFHype.Controllers
       
       return NoContent();
     }
+    
     
     // DELETE: api/Messages/1  }
     [HttpDelete("{id}")]
