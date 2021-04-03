@@ -12,10 +12,10 @@ namespace SFHype.Models
     }
     [Key]
     public int RemarkId { get; set; }    
-    public string RemarkContent { get; set; }
-    public int ShopId {get; set;}
+    public string Content { get; set; }
     public DateTime Originated { get; set; }
-
+    public int ShopId {get; set;}
+    public string Ip {get; set;}
 
   }
   

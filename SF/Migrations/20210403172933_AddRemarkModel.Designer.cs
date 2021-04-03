@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SFHype.Models;
 
 namespace SFHype.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20210403172933_AddRemarkModel")]
+    partial class AddRemarkModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,9 +26,6 @@ namespace SFHype.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Ip")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("Originated")
@@ -48,9 +47,6 @@ namespace SFHype.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DayChange")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<string>("Describe")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -62,9 +58,6 @@ namespace SFHype.Migrations
 
                     b.Property<float>("HypeRatio")
                         .HasColumnType("float");
-
-                    b.Property<string>("IpLog")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("LastAccess")
                         .HasColumnType("datetime(6)");
@@ -95,7 +88,6 @@ namespace SFHype.Migrations
                         new
                         {
                             ShopId = -2,
-                            DayChange = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Describe = "A cool shop.",
                             Dislikes = 0,
                             Hype = 0f,
@@ -103,14 +95,13 @@ namespace SFHype.Migrations
                             LastAccess = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Likes = 0,
                             Name = "SF Shop 1",
-                            Originated = new DateTime(2021, 4, 3, 12, 35, 40, 536, DateTimeKind.Local).AddTicks(5867),
+                            Originated = new DateTime(2021, 4, 3, 10, 29, 33, 141, DateTimeKind.Local).AddTicks(5459),
                             RemarkId = 0,
                             Type = "Restaurant"
                         },
                         new
                         {
                             ShopId = -1,
-                            DayChange = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Describe = "Another cool shop.",
                             Dislikes = 0,
                             Hype = 0f,
@@ -118,7 +109,7 @@ namespace SFHype.Migrations
                             LastAccess = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Likes = 0,
                             Name = "SF Shop 2",
-                            Originated = new DateTime(2021, 4, 3, 12, 35, 40, 536, DateTimeKind.Local).AddTicks(7502),
+                            Originated = new DateTime(2021, 4, 3, 10, 29, 33, 141, DateTimeKind.Local).AddTicks(7362),
                             RemarkId = 0
                         });
                 });

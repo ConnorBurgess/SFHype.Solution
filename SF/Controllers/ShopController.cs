@@ -22,8 +22,8 @@ namespace SFHype.Controllers
     [HttpGet("all")]
     public async Task<ActionResult<IEnumerable<Shop>>> Get(string type)
     {
-      var query = _db.Shops.AsQueryable();
-      // var query = _db.Shops.Include(entry => entry.Comments).AsQueryable();
+     // var query = _db.Shops.AsQueryable();
+      var query = _db.Shops.Include(entry => entry.Remarks).AsQueryable();
       // foreach (Shop shop in query) {
       //   shop.Include(shop.Comments);
       // }
@@ -44,10 +44,10 @@ namespace SFHype.Controllers
       {
         return NotFound();
       }
-      shop.Hype += .003f;
+      ApiUtility.ShopUtils(shop, HttpContext.Connection.RemoteIpAddress.ToString());
       _db.Entry(shop).State = EntityState.Modified;
-      Console.WriteLine(shop.LastAccess.DayOfYear);
-      Console.WriteLine(DateTime.Now.DayOfYear);
+      // Console.WriteLine(shop.LastAccess.DayOfYear);
+      // Console.WriteLine(DateTime.Now.DayOfYear);
       // if (shop.LastAccess.DayOfYear == DateTime.DayOfYear)
       await _db.SaveChangesAsync();
 
@@ -85,7 +85,7 @@ namespace SFHype.Controllers
       
       if (thisShop != null)
       {
-        // thisShop.Remarks.Add(remark);
+        thisShop.Remarks.Add(remark);
       _db.Entry(thisShop).State = EntityState.Modified;
         await _db.SaveChangesAsync();
       }

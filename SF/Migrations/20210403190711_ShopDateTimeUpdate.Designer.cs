@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SFHype.Models;
 
 namespace SFHype.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20210403190711_ShopDateTimeUpdate")]
+    partial class ShopDateTimeUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,9 +26,6 @@ namespace SFHype.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Ip")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("Originated")
@@ -62,9 +61,6 @@ namespace SFHype.Migrations
 
                     b.Property<float>("HypeRatio")
                         .HasColumnType("float");
-
-                    b.Property<string>("IpLog")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("LastAccess")
                         .HasColumnType("datetime(6)");
@@ -103,7 +99,7 @@ namespace SFHype.Migrations
                             LastAccess = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Likes = 0,
                             Name = "SF Shop 1",
-                            Originated = new DateTime(2021, 4, 3, 12, 35, 40, 536, DateTimeKind.Local).AddTicks(5867),
+                            Originated = new DateTime(2021, 4, 3, 12, 7, 11, 450, DateTimeKind.Local).AddTicks(3208),
                             RemarkId = 0,
                             Type = "Restaurant"
                         },
@@ -118,7 +114,7 @@ namespace SFHype.Migrations
                             LastAccess = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Likes = 0,
                             Name = "SF Shop 2",
-                            Originated = new DateTime(2021, 4, 3, 12, 35, 40, 536, DateTimeKind.Local).AddTicks(7502),
+                            Originated = new DateTime(2021, 4, 3, 12, 7, 11, 450, DateTimeKind.Local).AddTicks(5341),
                             RemarkId = 0
                         });
                 });
