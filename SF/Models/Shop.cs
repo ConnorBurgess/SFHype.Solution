@@ -11,7 +11,7 @@ namespace SFHype.Models
     {
       this.Remarks = new HashSet<Remark>();
       this.Originated = DateTime.Now;
-      this.HypeRatio = 1;
+      this.HypeRatio = .001f;
     }
     [Key]
     public int ShopId { get; set; }

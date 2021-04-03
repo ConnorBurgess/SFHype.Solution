@@ -12,10 +12,10 @@ SFHype is a RESTful API with full CRUD to track and rate hyped shops, restaurant
 
 ## Hype system
 ### Manipulate a shop's hype in the following ways:
-* Get requests to a specific shop (EX: 1 GET request to a shop will increase it's hype rating (.001*HR, where HR = hype ratio))
-* Remarks posted to a shop tagged with a "Like" (+.003 * HR)
-* Remarks posted to a shop tagged with a "Disike" (-.003H * HR),
-* Hype ratio starts at 1.00 and scales to level of interaction with API. Ratio will help prevent abuse of system in event of surges in activity and will need to be set to roll over using a system DateTime as reference. Without rolling over ratios the system will otherwise linearly scale.
+* Get requests to a specific shop (EX: 1 GET request to a shop will increase it's hype rating (.001 - HS, where HS = hype scale))
+* Remarks posted to a shop tagged with a "Like" (+.003 - HS*3)
+* Remarks posted to a shop tagged with a "Disike" (-.003H - HS*3),
+* Hype scale starts at .001f and decrements with each interaction to API. Current scale is implemented in conjunction with client IP check helps prevent abuse of system and is set to roll over daily using UTC DateTime. API by default will no longer increment hype for a shop after 1000 interactions with a specific shop and may be adjusted as needed in ApiUtility.cs. 
 
 ## Technologies used
 * C#
