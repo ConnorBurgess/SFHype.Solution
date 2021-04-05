@@ -7,15 +7,15 @@
 * API is WIP
 
 ## Description  
-SFHype is a RESTful API with full CRUD to track hyped shops, restaurants, and other spots around the San Francisco metro area. Database is pre-seeded with starting shops and ready to be incorporated with a front end. Utilizes system whereby shops gain "hype" according to how user interacts with API (see below for examples). Shops are added to "featured shop" list which are sorted in descending order by hype rating. API created using C#/.Net and Uses Entity Framework Core ORM to abstract SQL interaction. 
+SFHype is a RESTful API with full CRUD to track hyped shops, restaurants, and other spots around the San Francisco metro area. Database is pre-seeded with starting shops and ready to be incorporated with a front end. Utilizes system whereby shops gain "hype" according to how user interacts with API (see below for examples). Shops are added to "featured shop" list which are sorted in descending order according to hype rating. API created using C#/.Net and Uses Entity Framework Core ORM to abstract SQL interaction. 
 * * *
 
 ## Hype system
 ### Manipulate a shop's hype in the following ways:
 * Get requests to a specific shop (EX: 1 GET request to a shop will increase it's hype rating (.001 - HS, where HS = hype scale))
 * Remarks posted to a shop tagged with a "Like" (+.003 - HS*3)
-* Remarks posted to a shop tagged with a "Disike" (-.003H - HS*3),
-* Hype scale starts at .001f and decrements with each interaction to API. Current scale is implemented in conjunction with client IP check to help prevent abuse of system and is set to roll over daily using UTC DateTime. API by default will no longer increment hype for a shop after 1000 interactions with a specific shop. Setting may be adjusted as needed in ApiUtility.cs. 
+* Remarks posted to a shop tagged with a "Disike" (-.003 - HS*3),
+* Hype scale starts at .001 and decrements with each interaction to API. Current scale is implemented in conjunction with client IP check is set to roll over daily using UTC DateTime. API by default will no longer increment hype for a shop until the day has elapsed after 1000 interactions with a specific shop. This is accomplished by decreasing scale by .000001 with each hype-generating interaction. Scale and decrementer may be adjusted as needed in Shop.cs (EX: Decrementer set at .0000005 allows for 2000 hype-generating interactions with API). 
 
 ## Technologies used
 * C#
@@ -61,7 +61,8 @@ SFHype is a RESTful API with full CRUD to track hyped shops, restaurants, and ot
 * * *
 
 ## To Do:
-
+* Switch to 24 hour elapsing for resetting hype scale / IPLog as opposed to day change
+* Implement Remarks controller / access modifier adjustments
 ## Resources Used:
 
 
