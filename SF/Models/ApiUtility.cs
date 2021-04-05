@@ -3,12 +3,12 @@ using System.Linq;
 namespace SFHype.Models
 {
 
-    public class ApiUtility
+    public class ApiUtility : Shop
     {
         public static void ShopUtils(Shop shop, string ip)
         {
-            ApiUtility.LogShopId(shop, ip);
             ApiUtility.AddHype(shop, ip);
+            ApiUtility.LogShopId(shop, ip);
         }
         public static void LogShopId(Shop shop, string ip)
         {
@@ -45,7 +45,7 @@ namespace SFHype.Models
             if (shop.DayChange.DayOfYear < DateTime.Now.DayOfYear)
             {
                 shop.IpLog = ip;
-                shop.Scale = .001f;
+                shop.SetScale(.001f);
             }
             //If scale has not been modified today then note the day
             if (shop.Scale == .001f)

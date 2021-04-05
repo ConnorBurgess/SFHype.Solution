@@ -34,11 +34,11 @@ namespace SFHype
     {
         Version = "v1",
         Title = "SFHype API",
-        Description = "SFHype is a RESTful API that allows users to GET, POST, and rank the best shops in the San Francisco metro area",
+        Description = "SFHype is a RESTful API that allows users to GET, POST, and track the best shops in the San Francisco metro area",
         Contact = new OpenApiContact
         {
             Name = "Connor Burgess",
-            Email = string.Empty,
+            Email = "Connorburgesscodes@gmail.com",
             Url = new Uri("https://github.com/ConnorBurgess"),
         },
         License = new OpenApiLicense

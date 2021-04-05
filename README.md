@@ -4,10 +4,10 @@
 <p align="center"><img src="" alt="Sf Hype"
 	title="SF Hype" width="350" height="200"></p>
 
-Work in Progress
+* API is WIP
 
 ## Description  
-SFHype is a RESTful API with full CRUD to track and rate hyped shops, restaurants, and other spots around the San Francisco metro area. Database is pre-seeded with starting shops and ready to be incorporated with a front end. Utilizes system whereby shops gain "hype" according to how user interacts with API (see below for examples). Shops are added to "featured shop" list which are sorted in descending order by hype rating. API created using C#/.Net and Uses Entity Framework Core ORM to abstract SQL interaction. 
+SFHype is a RESTful API with full CRUD to track hyped shops, restaurants, and other spots around the San Francisco metro area. Database is pre-seeded with starting shops and ready to be incorporated with a front end. Utilizes system whereby shops gain "hype" according to how user interacts with API (see below for examples). Shops are added to "featured shop" list which are sorted in descending order by hype rating. API created using C#/.Net and Uses Entity Framework Core ORM to abstract SQL interaction. 
 * * *
 
 ## Hype system
@@ -15,7 +15,7 @@ SFHype is a RESTful API with full CRUD to track and rate hyped shops, restaurant
 * Get requests to a specific shop (EX: 1 GET request to a shop will increase it's hype rating (.001 - HS, where HS = hype scale))
 * Remarks posted to a shop tagged with a "Like" (+.003 - HS*3)
 * Remarks posted to a shop tagged with a "Disike" (-.003H - HS*3),
-* Hype scale starts at .001f and decrements with each interaction to API. Current scale is implemented in conjunction with client IP check helps prevent abuse of system and is set to roll over daily using UTC DateTime. API by default will no longer increment hype for a shop after 1000 interactions with a specific shop and may be adjusted as needed in ApiUtility.cs. 
+* Hype scale starts at .001f and decrements with each interaction to API. Current scale is implemented in conjunction with client IP check to help prevent abuse of system and is set to roll over daily using UTC DateTime. API by default will no longer increment hype for a shop after 1000 interactions with a specific shop. Setting may be adjusted as needed in ApiUtility.cs. 
 
 ## Technologies used
 * C#

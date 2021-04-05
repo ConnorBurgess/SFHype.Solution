@@ -19,25 +19,31 @@ namespace SFHype.Controllers
         {
             _db = db;
         }
+
         /// <summary>
         /// Retrieve complete listing of all Shops
         /// </summary>
         /// <remarks> <b>Get</b> all Shops</remarks>
         /// <param name="type" example="restaurant">Specifies type of business to retrieve <b>Not currently implemented </b></param>
+        /// <param name="ranked" example="true">Returns list of shops sorted descending by hype rating</param>
         [HttpGet("all")]
-        public async Task<ActionResult<IEnumerable<Shop>>> GetAll(string type)
+        public async Task<ActionResult<IEnumerable<Shop>>> GetAll(string type, bool ranked)
         {
-            // var query = _db.Shops.AsQueryable();
             var query = _db.Shops.Include(entry => entry.Remarks).AsQueryable();
-            // foreach (Shop shop in query) {
-            //   shop.Include(shop.Comments);
+            // if (type != null)
+            // {
+            //     query = query.Where(e => e.Type == type);
             // }
-            if (type != null)
+            if (ranked == true)
             {
-                query = query.Where(e => e.Type == type);
+                var queryList = await query.ToListAsync();
+                List<Shop> querySorted = queryList.OrderByDescending(shop => shop.Hype).ToList();
+                return querySorted;
             }
-
-            return await query.ToListAsync();
+            else
+            {
+                return await query.ToListAsync();
+            }
         }
         //GET: api/Shops/1
         /// <summary>
@@ -56,9 +62,6 @@ namespace SFHype.Controllers
             }
             ApiUtility.ShopUtils(shop, HttpContext.Connection.RemoteIpAddress.ToString());
             _db.Entry(shop).State = EntityState.Modified;
-            // Console.WriteLine(shop.LastAccess.DayOfYear);
-            // Console.WriteLine(DateTime.Now.DayOfYear);
-            // if (shop.LastAccess.DayOfYear == DateTime.DayOfYear)
             await _db.SaveChangesAsync();
             return shop;
         }
@@ -81,7 +84,6 @@ namespace SFHype.Controllers
                 shop.Originated = DateTime.Now;
                 shop.LastAccess = DateTime.Now;
                 shop.Hype = 0.25f;
-                // _db.Shops.Update(thisShop);    
                 await _db.SaveChangesAsync();
             }
             else
@@ -92,7 +94,6 @@ namespace SFHype.Controllers
         }
 
         // POST new comment api/Shops/1
-        // POST api/Shops
         /// <summary>
         /// Post a new remark
         /// </summary>
@@ -152,7 +153,6 @@ namespace SFHype.Controllers
 
             return NoContent();
         }
-
 
         // DELETE: api/Messages/1  }
         /// <summary>
