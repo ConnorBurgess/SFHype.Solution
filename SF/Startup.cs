@@ -30,24 +30,27 @@ namespace SFHype
             services.AddControllers();
             services.AddSwaggerGen(c =>
 {
-            c.SwaggerDoc("v1", new OpenApiInfo
-            {
-                Version = "v1",
-                Title = "SF Metro Hype API",
-                Description = "SFMetroHype is a RESTful API with full CRUD to add hyped businesses in the San Francisco metro area",
-                Contact = new OpenApiContact
-                {
-                    Name = "Connor Burgess",
-                    Email = string.Empty,
-                    Url = new Uri("https://github.com/ConnorBurgess"),
-                },
-                License = new OpenApiLicense
-                {
-                    Name = "Licensed under MIT license",
-                    Url = new Uri("https://mit-license.org/"),
-                }
-            });
-        });
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "SFHype API",
+        Description = "SFHype is a RESTful API that allows users to GET, POST, and rank the best shops in the San Francisco metro area",
+        Contact = new OpenApiContact
+        {
+            Name = "Connor Burgess",
+            Email = string.Empty,
+            Url = new Uri("https://github.com/ConnorBurgess"),
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Licensed under MIT license",
+            Url = new Uri("https://mit-license.org/"),
+        }
+
+    });
+    var filePath = Path.Combine(System.AppContext.BaseDirectory, "SFHype.xml");
+    c.IncludeXmlComments(filePath);
+});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

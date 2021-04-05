@@ -11,7 +11,8 @@ namespace SFHype.Models
     {
       this.Remarks = new HashSet<Remark>();
       this.Originated = DateTime.Now;
-      this.HypeRatio = .001f;
+      this.Scale = .001f;
+      this.DecrementScale = .000001f;
     }
     [Key]
     public int ShopId { get; set; }
@@ -24,7 +25,9 @@ namespace SFHype.Models
     public int Likes {get; set; }
     public int Dislikes {get; set; }
     public float Hype {get;  set;}
-    public float HypeRatio {get; set;}
+    public float Scale {get; set;}
+    public float DecrementScale {get; set;}
+
     public DateTime Originated { get; set; }
     public DateTime DayChange {get; set; }
     public DateTime LastAccess { get; set; }
