@@ -71,7 +71,7 @@ namespace SFHype.Controllers
         /// Post a new shop
         /// </summary>
         /// <remarks><b>Post</b> new shop to database </remarks>
-        /// <param name="shop"> Access modifiers currently set to public. <b> Only "name" is required </b> </param>
+        /// <param name="shop"> <b> Name </b> and <b>describe</b> a new shop</param>
         [HttpPost]
         public async Task<ActionResult<Shop>> Post(Shop shop)
         {
@@ -81,9 +81,9 @@ namespace SFHype.Controllers
             {
 
                 _db.Shops.Add(shop);
-                shop.Originated = DateTime.Now;
-                shop.LastAccess = DateTime.Now;
-                shop.Hype = 0.25f;
+                shop.SetOriginated(DateTime.Now);
+                shop.SetLastAccess(DateTime.Now);
+                shop.AddHype(0.25f);
                 await _db.SaveChangesAsync();
             }
             else
@@ -97,8 +97,8 @@ namespace SFHype.Controllers
         /// <summary>
         /// Post a new remark
         /// </summary>
-        /// <remarks><b>Post</b> new remark to a specific shop </remarks>
-        /// <param name="remark"> Access modifiers currently set to public. <b> Only "content" is required </b> </param>
+        /// <remarks><b>Post</b> new remark to a specific shop <b> Not yet implemented </b> </remarks>
+        /// <param name="remark"> Access modifiers currently set to public.</param>
         /// <param name="id" example="1"><b>"id" references shop to post to </b> </param>
 
         [HttpPost("{id}")]
@@ -125,6 +125,8 @@ namespace SFHype.Controllers
         /// </summary>
         /// <remarks><b>Put</b> specific shop and modify its details</remarks>
         /// <param name="id" example="1"> ShopId is required to retrieve specific shop</param>
+        /// <param name="shop"> Shop <b>name</b> and <b>description</b> may be modified</param>
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, Shop shop)
         {

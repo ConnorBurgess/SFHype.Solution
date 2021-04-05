@@ -18,25 +18,25 @@ namespace SFHype.Models
             this.DecrementScale = .000001f;
         }
         [Key]
-        public int ShopId { get; set; }
-        public int RemarkId { get; set; }
+        public int ShopId { get; private set; }
+        public int RemarkId { get; private set; }
         public string Name { get; set; }
         public string Describe { get; set; }
-        public string Remark { get; set; }
-        public string Type { get; set; }
-        public string IpLog { get; set; }
-        public int Likes { get; set; }
-        public int Dislikes { get; set; }
-        public float Hype { get; set; }
+        public string Remark { get; private set; }
+        public string Type { get; private set; }
+        public string IpLog { get; private set; }
+        public int Likes { get; private set; }
+        public int Dislikes { get; private set; }
+        public float Hype { get; private set; }
         public float Scale { get; private set; }
         public float DecrementScale { get; private set; }
 
-        public DateTime Originated { get; set; }
-        public DateTime DayChange { get; set; }
-        public DateTime LastAccess { get; set; }
-        public ICollection<Remark> Remarks { get; set; }
+        public DateTime Originated { get; private set; }
+        public DateTime DayChange { get; private set; }
+        public DateTime LastAccess { get; private set; }
+        public ICollection<Remark> Remarks { get; private set; }
 
-        // Set ID outside class for purposes of testing seed data if necessary
+        // Set ID outside class for purposes of testing seed data
         public void SetId(int id)
         {
             ShopId = id;
@@ -45,6 +45,31 @@ namespace SFHype.Models
         {
             this.Scale = scaleVal;
         }
+        public void SetOriginated(DateTime today)
+        {
+            this.Originated = today;
+        }
+        public void AddHype(float hypeVal)
+        {
+            this.Hype += hypeVal;
+        }
+        public void ResetIpLog() {
+          this.IpLog = "";
+        }
+        public void AddIp(string ip, DateTime today) {
+          this.IpLog += ip + ',' + DateTime.Now + ",";
+        }
+        //Used in ApiUtility to track if day has changed in order to reset daily hype scale / daily IP log
+        public void SetDayChange(DateTime today)
+        {
+            this.DayChange = today;
+        }
+        //Used in ApiUtility to set last access time for instance of Shop
+        public void SetLastAccess(DateTime today)
+        {
+            this.LastAccess = today;
+        }
+
     }
 
 }

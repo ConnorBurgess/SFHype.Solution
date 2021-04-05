@@ -12,13 +12,8 @@ namespace SFHype.Models
         }
         public static void LogShopId(Shop shop, string ip)
         {
-            //Store to perpetual log
-            // shop.IpAccessLog.Add(ip, DateTime.Now);
-            // var lines = shop.IpAccessLog.Select(kvp => kvp.Key + ": " + kvp.Value.ToString());
-            // Console.WriteLine(string.Join(Environment.NewLine, lines));
-
-            //Store to temporary daily log
-            shop.IpLog += ip + ',' + DateTime.Now + ",";
+            //Future implementation to include perpetual IP log in addition to current daily log
+            shop.AddIp(ip, DateTime.Now);
             Console.WriteLine(shop.IpLog);
         }
         public static void AddHype(Shop shop, string ip)
@@ -29,36 +24,36 @@ namespace SFHype.Models
             {
                 if (checkIp == ip)
                 {
-                    System.Console.WriteLine("match found");
                     return;
                 }
                 if (shop.IpLog[i] == ',')
                 {
                     checkIp = "";
-                    //Skip DateTime entry
+                    //Increment i to skip DateTime entry
                     i += 20;
                 }
                 checkIp += shop.IpLog[i];
             }
-            // Console.WriteLine(DateTime.Now.DayOfYear);
             // Check if day has passed and reset IpLog
             if (shop.DayChange.DayOfYear < DateTime.Now.DayOfYear)
             {
-                shop.IpLog = ip;
+                shop.ResetIpLog();
+                shop.AddIp(ip, DateTime.Now);
                 shop.SetScale(.001f);
             }
-            //If scale has not been modified today then note the day
+            // If scale has not been modified today then note the day
             if (shop.Scale == .001f)
             {
-                shop.DayChange = DateTime.Now;
+                shop.SetDayChange(DateTime.Now);
             }
-            //Allows hype to be incremented by 1000 GET requests before no longer having an affect
             if (shop.Scale <= 0)
             {
-                shop.LastAccess = DateTime.Now;
+                shop.SetLastAccess(DateTime.Now);
+                return;
             }
-            shop.Hype += (shop.Scale - shop.DecrementScale);
-            shop.LastAccess = DateTime.Now;
+
+            shop.AddHype(shop.Scale - shop.DecrementScale);
+            shop.SetLastAccess(DateTime.Now);
         }
 
     }
